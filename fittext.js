@@ -40,8 +40,16 @@
                 el.style.fontSize = Math.max(Math.min(el.clientWidth / compress, maxFontSize), minFontSize) + 'px';
             }
 
-            // Leave a small timeout for the element to properly compute its client size.
-            setTimeout(resize, 10);
+            function tryResize() {
+                if (el.clientWidth > 0) {
+                    resize()
+                } else {
+                    // Wait until client size is properly computed
+                    setTimeout(tryResize, 10);
+                }
+            }
+
+            tryResize();
 
             // Bind events
             // If you have any js library which support Events, replace this part
