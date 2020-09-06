@@ -8,24 +8,31 @@
   <script src="fittext.js"></script>
 </head>
 <body>
-<div class="flip-card">
-  <div id="innerCard" class="flip-card-inner" onclick="flipCard()">
+<div class="card-holder">
+  <div id="card" class="flip-card" onclick="flipCard()">
     <div class="flip-card-front">
       <img src="anverso.png" alt="anverso">
     </div>
     <div class="flip-card-back">
       <img src="reverso.png" alt="reverso">
-      <div class="recipients">
+      <div class="recipients no-select">
         <h2 id="recipients_header">Destinatario:</h2>
         <div id="recipients_list"></div>
         <div id="info">
           Confirmación y más información en la web<br>
-          <a href="https://www.bodas.net/web/karen-y-oscar">www.bodas.net/web/karen-y-oscar</a>
+          <a onclick="event.stopPropagation()" href="https://www.bodas.net/web/karen-y-oscar">www.bodas.net/web/karen-y-oscar</a>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<div id="popup" class="popup no-select" onclick="dismissPopup()">
+  Toca la invitación para voltearla!
+  <br>
+  Usa el modo apaisado para verla mejor.
+</div>
+
 <script src="recipients.js"></script>
 </body>
 </html>

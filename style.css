@@ -2,7 +2,7 @@ body {
     background: #9F8348;
 }
 
-.flip-card {
+.card-holder {
     height: 90vh;
     width: 90vw;
     margin: 5vh auto;
@@ -12,7 +12,7 @@ body {
 }
 
 /* Needed to position the front and back side */
-.flip-card-inner {
+.flip-card {
     margin: auto;
     transition: transform 0.8s;
     transform-style: preserve-3d;
@@ -29,8 +29,7 @@ body {
     display: block;
     width: 100%;
     height: 100%;
-    background: #0002;
-    -webkit-transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0, 0, 0);
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
 }
@@ -62,6 +61,13 @@ img {
     color: #9F8348;
 }
 
+.no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .recipients h2 {
     margin-bottom: 0.3em;
 }
@@ -82,4 +88,25 @@ img {
 
 #info a {
     color: #9F8348;
+}
+
+.popup {
+    position: absolute;
+    display: inline-block;
+    z-index: 1;
+
+    margin-top: -6em;
+    margin-left: 2em;
+    border-radius: 6px;
+    padding: 0.7em;
+
+    background-color: #B0BD93DD;
+    color: #fff;
+    font-size: 2em;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.2s, opacity 0.2s linear;
 }

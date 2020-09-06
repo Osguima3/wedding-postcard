@@ -1,4 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
+
+let card = document.getElementById('card');
+let popup = document.getElementById("popup");
+
+function loadRecipients() {
     let recipientsParam = new URL(window.location.href).searchParams.get("recipients");
     let recipients = recipientsParam === null ? [] : recipientsParam.split(",");
 
@@ -17,11 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
     fitText(recipientsDiv, 17);
     fitText(document.getElementById("recipients_header"), 15);
     fitText(document.getElementById("info"), 22);
-});
-
-let innerCard = document.getElementById('innerCard');
-
-function flipCard() {
-    innerCard.classList.toggle('flipped');
 }
 
+function flipCard() {
+    card.classList.toggle('flipped');
+    dismissPopup()
+}
+
+function dismissPopup() {
+    popup.classList.add("hidden");
+}
+
+document.addEventListener('DOMContentLoaded', loadRecipients);
+
+addEvent(window, 'orientationchange', dismissPopup);
+setTimeout(dismissPopup, 5000);
