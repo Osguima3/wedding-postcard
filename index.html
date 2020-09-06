@@ -8,21 +8,19 @@
   <script src="fittext.js"></script>
 </head>
 <body>
-<div class="card-holder">
-  <div class="flip-card">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">
-        <img src="anverso.png" alt="anverso">
-      </div>
-      <div class="flip-card-back">
-        <img src="reverso.png" alt="reverso">
-        <div class="recipients">
-          <h2 id="recipients_header">Destinatario:</h2>
-          <div id="recipients_list"></div>
-          <div id="info">
-            Confirmación y más información en la web<br>
-            <a href="https://www.bodas.net/web/karen-y-oscar">www.bodas.net/web/karen-y-oscar</a>
-          </div>
+<div class="flip-card">
+  <div id="innerCard" class="flip-card-inner" onclick="flipCard()">
+    <div class="flip-card-front">
+      <img src="anverso.png" alt="anverso">
+    </div>
+    <div class="flip-card-back">
+      <img src="reverso.png" alt="reverso">
+      <div class="recipients">
+        <h2 id="recipients_header">Destinatario:</h2>
+        <div id="recipients_list"></div>
+        <div id="info">
+          Confirmación y más información en la web<br>
+          <a href="https://www.bodas.net/web/karen-y-oscar">www.bodas.net/web/karen-y-oscar</a>
         </div>
       </div>
     </div>
