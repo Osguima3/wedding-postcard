@@ -1,61 +1,62 @@
-/*!
+/*
 * FitText.js 1.0 jQuery free version
 *
 * Copyright 2011, Dave Rupert http://daverupert.com
 * Released under the WTFPL license
 * http://sam.zoy.org/wtfpl/
 * Modified by Slawomir Kolodziej http://slawekk.info
-*
-* Date: Tue Aug 09 2011 10:45:54 GMT+0200 (CEST)
 */
 (function () {
-
-    let addEvent = function (el, type, fn) {
-        if (el.addEventListener)
+    function addEvent(el, type, fn) {
+        if (el.addEventListener) {
             el.addEventListener(type, fn, false);
-        else
+        } else {
             el.attachEvent('on' + type, fn);
-    };
+        }
+    }
 
-    let extend = function (obj, ext) {
-        for (let key in ext)
-            if (ext.hasOwnProperty(key))
+    function extend(obj, ext) {
+        for (let key in ext) {
+            if (ext.hasOwnProperty(key)) {
                 obj[key] = ext[key];
+            }
+        }
+
         return obj;
-    };
+    }
 
-    window.fitText = function (el, kompressor, options) {
-
+    window.fitText = function (el, compressor, options) {
         let settings = extend({
-            'minFontSize': -1 / 0,
-            'maxFontSize': 1 / 0
+            minFontSize: -1 / 0,
+            maxFontSize: 1 / 0
         }, options);
 
-        let fit = function (el) {
-            let compressor = kompressor || 1;
+        let compress = compressor || 10;
+        let maxFontSize = settings.maxFontSize;
+        let minFontSize = settings.minFontSize;
 
-            let resizer = function () {
-                el.style.fontSize = Math.max(
-                    Math.min(el.clientWidth / (compressor * 10), parseFloat(settings.maxFontSize)),
-                    parseFloat(settings.minFontSize)
-                ) + 'px';
-            };
+        function fit(el) {
+            function resize() {
+                el.style.fontSize = Math.max(Math.min(el.clientWidth / compress, maxFontSize), minFontSize) + 'px';
+            }
 
-            // Call once to set.
-            resizer();
+            // Leave a small timeout for the element to properly compute its client size.
+            setTimeout(resize, 10);
 
             // Bind events
             // If you have any js library which support Events, replace this part
             // and remove addEvent function (or use original jQuery version)
-            addEvent(window, 'resize', resizer);
-            addEvent(window, 'orientationchange', resizer);
-        };
+            addEvent(window, 'resize', resize);
+            addEvent(window, 'orientationchange', resize);
+        }
 
-        if (el.length)
-            for (let i = 0; i < el.length; i++)
+        if (el.length) {
+            for (let i = 0; i < el.length; i++) {
                 fit(el[i]);
-        else
+            }
+        } else {
             fit(el);
+        }
 
         // return set of elements
         return el;
